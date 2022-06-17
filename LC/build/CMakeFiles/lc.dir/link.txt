@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/lc.dir/lc.cpp.o  -o lc 

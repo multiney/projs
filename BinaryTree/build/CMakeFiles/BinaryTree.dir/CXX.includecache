@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vikung/projects/BinaryTree/BT.h
+vector
+-
+
+/home/vikung/projects/BinaryTree/impl.cpp
+BT.h
+/home/vikung/projects/BinaryTree/BT.h
+stack
+-
+algorithm
+-
+queue
+-
+

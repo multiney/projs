@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/vikung/projects/PersonInfo/PersonInfo.h
+string
+-
+vector
+-
+
+/home/vikung/projects/PersonInfo/main.cpp
+PersonInfo.h
+/home/vikung/projects/PersonInfo/PersonInfo.h
+iostream
+-
+fstream
+-
+sstream
+-
+
