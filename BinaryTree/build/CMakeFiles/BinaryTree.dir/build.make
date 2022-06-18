@@ -57,45 +57,60 @@ include CMakeFiles/BinaryTree.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/BinaryTree.dir/flags.make
 
-CMakeFiles/BinaryTree.dir/main.cpp.o: CMakeFiles/BinaryTree.dir/flags.make
-CMakeFiles/BinaryTree.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vikung/projects/BinaryTree/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BinaryTree.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BinaryTree.dir/main.cpp.o -c /home/vikung/projects/BinaryTree/main.cpp
+CMakeFiles/BinaryTree.dir/funcImpl.cpp.o: CMakeFiles/BinaryTree.dir/flags.make
+CMakeFiles/BinaryTree.dir/funcImpl.cpp.o: ../funcImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vikung/projects/BinaryTree/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BinaryTree.dir/funcImpl.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BinaryTree.dir/funcImpl.cpp.o -c /home/vikung/projects/BinaryTree/funcImpl.cpp
 
-CMakeFiles/BinaryTree.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BinaryTree.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vikung/projects/BinaryTree/main.cpp > CMakeFiles/BinaryTree.dir/main.cpp.i
+CMakeFiles/BinaryTree.dir/funcImpl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BinaryTree.dir/funcImpl.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vikung/projects/BinaryTree/funcImpl.cpp > CMakeFiles/BinaryTree.dir/funcImpl.cpp.i
 
-CMakeFiles/BinaryTree.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BinaryTree.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vikung/projects/BinaryTree/main.cpp -o CMakeFiles/BinaryTree.dir/main.cpp.s
+CMakeFiles/BinaryTree.dir/funcImpl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BinaryTree.dir/funcImpl.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vikung/projects/BinaryTree/funcImpl.cpp -o CMakeFiles/BinaryTree.dir/funcImpl.cpp.s
 
 CMakeFiles/BinaryTree.dir/impl.cpp.o: CMakeFiles/BinaryTree.dir/flags.make
 CMakeFiles/BinaryTree.dir/impl.cpp.o: ../impl.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vikung/projects/BinaryTree/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/BinaryTree.dir/impl.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BinaryTree.dir/impl.cpp.o -c /home/vikung/projects/BinaryTree/impl.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BinaryTree.dir/impl.cpp.o -c /home/vikung/projects/BinaryTree/impl.cpp
 
 CMakeFiles/BinaryTree.dir/impl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BinaryTree.dir/impl.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vikung/projects/BinaryTree/impl.cpp > CMakeFiles/BinaryTree.dir/impl.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vikung/projects/BinaryTree/impl.cpp > CMakeFiles/BinaryTree.dir/impl.cpp.i
 
 CMakeFiles/BinaryTree.dir/impl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BinaryTree.dir/impl.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vikung/projects/BinaryTree/impl.cpp -o CMakeFiles/BinaryTree.dir/impl.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vikung/projects/BinaryTree/impl.cpp -o CMakeFiles/BinaryTree.dir/impl.cpp.s
+
+CMakeFiles/BinaryTree.dir/main.cpp.o: CMakeFiles/BinaryTree.dir/flags.make
+CMakeFiles/BinaryTree.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vikung/projects/BinaryTree/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/BinaryTree.dir/main.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BinaryTree.dir/main.cpp.o -c /home/vikung/projects/BinaryTree/main.cpp
+
+CMakeFiles/BinaryTree.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BinaryTree.dir/main.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vikung/projects/BinaryTree/main.cpp > CMakeFiles/BinaryTree.dir/main.cpp.i
+
+CMakeFiles/BinaryTree.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BinaryTree.dir/main.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vikung/projects/BinaryTree/main.cpp -o CMakeFiles/BinaryTree.dir/main.cpp.s
 
 # Object files for target BinaryTree
 BinaryTree_OBJECTS = \
-"CMakeFiles/BinaryTree.dir/main.cpp.o" \
-"CMakeFiles/BinaryTree.dir/impl.cpp.o"
+"CMakeFiles/BinaryTree.dir/funcImpl.cpp.o" \
+"CMakeFiles/BinaryTree.dir/impl.cpp.o" \
+"CMakeFiles/BinaryTree.dir/main.cpp.o"
 
 # External object files for target BinaryTree
 BinaryTree_EXTERNAL_OBJECTS =
 
-BinaryTree: CMakeFiles/BinaryTree.dir/main.cpp.o
+BinaryTree: CMakeFiles/BinaryTree.dir/funcImpl.cpp.o
 BinaryTree: CMakeFiles/BinaryTree.dir/impl.cpp.o
+BinaryTree: CMakeFiles/BinaryTree.dir/main.cpp.o
 BinaryTree: CMakeFiles/BinaryTree.dir/build.make
 BinaryTree: CMakeFiles/BinaryTree.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vikung/projects/BinaryTree/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable BinaryTree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vikung/projects/BinaryTree/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable BinaryTree"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/BinaryTree.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

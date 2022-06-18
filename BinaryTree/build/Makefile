@@ -123,6 +123,33 @@ BinaryTree/fast:
 	$(MAKE) -f CMakeFiles/BinaryTree.dir/build.make CMakeFiles/BinaryTree.dir/build
 .PHONY : BinaryTree/fast
 
+funcImpl.o: funcImpl.cpp.o
+
+.PHONY : funcImpl.o
+
+# target to build an object file
+funcImpl.cpp.o:
+	$(MAKE) -f CMakeFiles/BinaryTree.dir/build.make CMakeFiles/BinaryTree.dir/funcImpl.cpp.o
+.PHONY : funcImpl.cpp.o
+
+funcImpl.i: funcImpl.cpp.i
+
+.PHONY : funcImpl.i
+
+# target to preprocess a source file
+funcImpl.cpp.i:
+	$(MAKE) -f CMakeFiles/BinaryTree.dir/build.make CMakeFiles/BinaryTree.dir/funcImpl.cpp.i
+.PHONY : funcImpl.cpp.i
+
+funcImpl.s: funcImpl.cpp.s
+
+.PHONY : funcImpl.s
+
+# target to generate assembly for a file
+funcImpl.cpp.s:
+	$(MAKE) -f CMakeFiles/BinaryTree.dir/build.make CMakeFiles/BinaryTree.dir/funcImpl.cpp.s
+.PHONY : funcImpl.cpp.s
+
 impl.o: impl.cpp.o
 
 .PHONY : impl.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... BinaryTree"
+	@echo "... funcImpl.o"
+	@echo "... funcImpl.i"
+	@echo "... funcImpl.s"
 	@echo "... impl.o"
 	@echo "... impl.i"
 	@echo "... impl.s"

@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "BinaryTree"
   "BinaryTree.pdb"
+  "CMakeFiles/BinaryTree.dir/funcImpl.cpp.o"
   "CMakeFiles/BinaryTree.dir/impl.cpp.o"
   "CMakeFiles/BinaryTree.dir/main.cpp.o"
 )
