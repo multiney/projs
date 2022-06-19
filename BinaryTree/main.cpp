@@ -13,7 +13,7 @@ void compareRecIter() {
     for (int i = 0; i < 10; ++i) {
         auto start = std::chrono::high_resolution_clock::now();
         for (auto& tree : vt)
-            isBalanced(tree);
+            maxDepth(tree);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         cout << "Time taken by recursion: "
@@ -22,7 +22,7 @@ void compareRecIter() {
 
         auto start2 = std::chrono::high_resolution_clock::now();
         for (auto& tree : vt)
-            isBalancedIter(tree);
+            maxDepthLevel(tree);
         auto stop2 = std::chrono::high_resolution_clock::now();
         auto duration2 = std::chrono::duration_cast<std::chrono::microseconds>(stop2 - start2);
         cout << "Time taken by iteration: "
@@ -45,7 +45,7 @@ void compareMySoluOther() {
             binaryTreePaths(tree);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-        cout << "Time taken by my own version: "
+        cout << "Time taken by my own version1: "
              << duration.count() / 1000.0 << " miliseconds" << endl;
         time1 += duration.count() / 1000.0;
 
@@ -59,13 +59,25 @@ void compareMySoluOther() {
         time2 += duration2.count() / 1000.0;
     }
 
-    cout << "my own version: "
+    cout << "my own version1: "
          << time1 / 10 << " miliseconds" << endl;
     cout << "other version: "
          << time2 / 10 << " miliseconds" << endl;
 }
 
+void justForTest() {
+    // vector<int> vec = {1, 2, 3};
+    // TreeNode* tree1 = CreateTreeByLevel(vec);
+    // TreeNode* tree2 = CreateTreeByLevel(vec);
+
+    const vector<TreeNode*>& vt = createTreesByLevel();
+    for (auto& tree : vt) {
+        int depth = maxDepthPre(tree);
+        cout << depth << endl;
+    }
+}
+
 int main()
 {
-    compareMySoluOther();
+    compareRecIter();
 }

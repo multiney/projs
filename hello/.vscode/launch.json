@@ -12,7 +12,7 @@
             "args": [], //指定运行参数
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}", //指定工作目录
-            "preLaunchTask": "build", //在调试前会先调用build_debug这个task编译构建程序
+            // "preLaunchTask": "build", //在调试前会先调用build_debug这个task编译构建程序
             "environment": [],
             "externalConsole": false,
             "osx": { //macOS的特定配置
@@ -21,6 +21,7 @@
             },
             "linux": { //linux的特定配置
                 "MIMode": "gdb", //指定使用gdb调试
+                "miDebuggerPath": "/usr/bin/gdb",
                 "setupCommands": [
                     {
                         "description": "Enable pretty-printing for gdb",
