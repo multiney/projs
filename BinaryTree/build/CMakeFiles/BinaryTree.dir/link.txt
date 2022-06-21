@@ -1,1 +1,0 @@
-/usr/bin/g++  -g  -rdynamic CMakeFiles/BinaryTree.dir/funcImpl.cpp.o CMakeFiles/BinaryTree.dir/impl.cpp.o CMakeFiles/BinaryTree.dir/main.cpp.o  -o BinaryTree 
