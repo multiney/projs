@@ -1,3 +1,0 @@
-/home/vikung/projects/PersonInfo/build/CMakeFiles/rebuild_cache.dir
-/home/vikung/projects/PersonInfo/build/CMakeFiles/edit_cache.dir
-/home/vikung/projects/PersonInfo/build/CMakeFiles/PersonInfo.dir

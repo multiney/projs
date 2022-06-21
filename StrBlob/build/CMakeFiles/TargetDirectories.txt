@@ -1,3 +1,0 @@
-/home/vikung/projects/StrBlob/build/CMakeFiles/edit_cache.dir
-/home/vikung/projects/StrBlob/build/CMakeFiles/rebuild_cache.dir
-/home/vikung/projects/StrBlob/build/CMakeFiles/StrBlob.dir

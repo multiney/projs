@@ -1,3 +1,0 @@
-/home/vikung/projects/Connection/build/CMakeFiles/rebuild_cache.dir
-/home/vikung/projects/Connection/build/CMakeFiles/edit_cache.dir
-/home/vikung/projects/Connection/build/CMakeFiles/connection.dir

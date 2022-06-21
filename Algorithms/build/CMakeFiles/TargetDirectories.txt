@@ -1,3 +1,0 @@
-/home/vikung/projects/Algorithms/build/CMakeFiles/rebuild_cache.dir
-/home/vikung/projects/Algorithms/build/CMakeFiles/edit_cache.dir
-/home/vikung/projects/Algorithms/build/CMakeFiles/algorithm.dir

@@ -1,3 +1,0 @@
-/home/vikung/projects/LC/build/CMakeFiles/rebuild_cache.dir
-/home/vikung/projects/LC/build/CMakeFiles/edit_cache.dir
-/home/vikung/projects/LC/build/CMakeFiles/lc.dir
