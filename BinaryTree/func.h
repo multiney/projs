@@ -17,7 +17,15 @@ TreeNode* CreateTreeByPre(const vector<int>&);
 vector<vector<int>> createTreeVecs();
 
 vector<TreeNode*> createTreesByLevel();
+vector<TreeNode*> createTreesByLevel(const vector<vector<int>>&);
 
+vector<vector<int>> create
+
+/**
+  * 144. Binary Tree Preorder Traversal
+  */ 
+vector<int> preorderTraversal(TreeNode*);
+vector<int> preorderTraversalStk(TreeNode*);
 
 // LeetCode
 bool isBalanced(TreeNode*);
@@ -48,4 +56,23 @@ int maxDepthLevel(TreeNode*);
   * 404. Sum of Left Leaves
   */ 
 int sumOfLeftLeaves(TreeNode*);
+int sumOfLeftLeavesStk(TreeNode*);
+
+/**
+  * 513. Find Bottom Left Tree value
+  */ 
+int findBottomLeftValue(TreeNode*);
+int findBottomLeftValueQue(TreeNode*);
+
+/**
+  * 112. Path sum 
+  */ 
+bool hasPathSum(TreeNode*, int); 
+bool hasPathSumStk(TreeNode*, int);
+
+/**
+  * 113. Path Sum II
+  */ 
+vector<vector<int>> pathSum(TreeNode*, int);
+// TODO: iteration version
 #endif // !BT_FUNCTION

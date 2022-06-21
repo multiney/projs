@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <fstream>
 
 using std::cout;
 using std::endl;
@@ -77,7 +78,58 @@ void justForTest() {
     }
 }
 
+void writeTreeVec(const vector<vector<int>>& vvi) {
+    string strTrees;
+    for (auto& v : vvi) {
+        string strTree = "[";
+        for (decltype(v.size()) i = 0; i < v.size() - 1; ++i) {
+            strTree += std::to_string(v[i]);
+            strTree += ",";
+        }
+        strTree += std::to_string(v[v.size() - 1]);
+        strTree += "]\n";
+        strTrees += strTree;
+    }
+    std::ofstream out("/mnt/c/Users/lenovo/Desktop/strTrees.txt");
+    out << strTrees;
+    out.close();
+}
+
+void compareWithJava() {
+    const vector<vector<int>>& vvi = createTreeVecs();
+    writeTreeVec(vvi);
+    const vector<TreeNode*>& trees = createTreesByLevel(vvi);
+    double totalTime = 0;
+    for (int i = 0; i < 10; ++i) {
+        auto start = std::chrono::high_resolution_clock::now();
+        for (auto& tree : trees)
+            pathSum(tree, 5000);
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start);
+        totalTime += duration.count();
+    }
+    double averageTime = totalTime / 10;
+    cout << averageTime
+         << " milliseconds" << endl;
+}
+
+void compareWithJavaStatic() {
+    const vector<vector<int>>& vvi = createTreeVecs();
+    writeTreeVec(vvi);
+    const vector<TreeNode*>& trees = createTreesByLevel(vvi);
+    double totalTime = 0;
+    for (int i = 0; i < 10; ++i) {
+        auto start = std::chrono::high_resolution_clock::now();
+        for (auto& tree : trees)
+            pathSum(tree, 5000);
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start);
+        totalTime += duration.count();
+    }
+    double averageTime = totalTime / 10;
+    cout << averageTime
+         << " milliseconds" << endl;
+}
+
 int main()
 {
-    compareRecIter();
+    compareWithJava();
 }

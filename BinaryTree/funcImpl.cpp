@@ -4,6 +4,7 @@
 #include <queue>
 #include <random>
 #include <stack>
+#include <bits/stdc++.h>
 
 using std::queue;
 using std::stack;
@@ -64,7 +65,7 @@ vector<vector<int>> createTreeVecs() {
     std::uniform_int_distribution<std::mt19937::result_type> dist1000(1, 1000);
 
     vector<vector<int>> vvi;
-    int treeNum = 1000;
+    int treeNum = 10000;
     while (treeNum--) {
         vector<int> vec;
         int len = dist1000(rng);
@@ -85,6 +86,48 @@ vector<TreeNode*> createTreesByLevel() {
         vt.push_back(root);
     }
     return vt;
+}
+
+vector<TreeNode*> createTreesByLevel(const vector<vector<int>>& vvi) {
+    vector<TreeNode*> vt;
+
+    for (unsigned int i = 0; i < vvi.size(); ++i) {
+        TreeNode* root = CreateTreeByLevel(vvi[i]);
+        vt.push_back(root);
+    }
+    return vt;
+}
+
+/**
+  * Binary tree Preorder traversal 
+  */ 
+void preorder(TreeNode* curr, vector<int>& ret) {
+    if (curr == nullptr) return;
+    ret.push_back(curr->val);
+    preorder(curr->left, ret);
+    preorder(curr->right, ret);
+}
+vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> ret;
+    preorder(root, ret);
+    return ret;
+}
+
+vector<int> preorderTraversalStk(TreeNode* root) {
+    vector<int> ret;
+    if (root == nullptr) return ret;
+    stack<TreeNode*> stk;
+    stk.push(root);
+
+    while (!stk.empty()) {
+        TreeNode* node = stk.top();
+        stk.pop();
+
+        ret.push_back(node->val);
+        if (node->right) stk.push(node->right);
+        if (node->left) stk.push(node->left);
+    }
+    return ret;
 }
 
 // LeetCode
@@ -334,4 +377,141 @@ int sumOfLeftLeaves(TreeNode* root) {
         midVal = root->left->val;
 
     return leftVal + rightVal + midVal;
+}
+
+int sumOfLeftLeavesStk(TreeNode* root) {
+    if (root == nullptr) return 0;
+    stack<TreeNode*> stk;
+    stk.push(root);
+    int ret = 0;
+
+    while (!stk.empty()) {
+        TreeNode* p = stk.top();
+        stk.pop();
+
+        if (p->left && !p->left->left && !p->left->right)
+            ret += p->left->val;
+
+        if (p->right) stk.push(p->right);
+        if (p->left) stk.push(p->left);
+    }
+    return ret;
+}
+
+/**
+  * 513. Find Bottom Left Tree Value
+  */ 
+int max_depth = INT_MIN;
+int maxLeftVal;
+void preTraversalOf513(TreeNode* curr, int depth) {
+    if (!curr->left && !curr->right) {
+        if (depth > max_depth) {
+            max_depth = depth;
+            maxLeftVal = curr->val;
+        }
+    }
+
+    if (curr->left)
+        preTraversalOf513(curr->left, depth + 1);
+
+    if (curr->right)
+        preTraversalOf513(curr->right, depth + 1);
+}
+int findBottomLeftValue(TreeNode* root) {
+    // TODO: throw an error notification when "root == nullptr", next function as well
+    preTraversalOf513(root, 0);
+    return maxLeftVal;
+}
+
+int findBottomLeftValueQue(TreeNode* root) {
+    queue<TreeNode*> que;
+    que.push(root);
+    int bottomLeftVal = 0;
+
+    while (!que.empty()) {
+        int size = que.size() - 1;
+        TreeNode* p = que.front();
+        que.pop();
+        bottomLeftVal = p->val;
+
+        if (p->left) que.push(p->left);
+        if (p->right) que.push(p->right);
+
+        while (size--) {
+            p = que.front();
+            que.pop();
+
+            if (p->left) que.push(p->left);
+            if (p->right) que.push(p->right);
+        }
+    }
+    return bottomLeftVal;
+}
+
+/**
+  * 112. Path Sum
+  */ 
+// my own version of helper function
+bool preTraversalOf112(TreeNode* curr, int targetSum) {
+    if (!curr) return false;
+    if (!curr->left && !curr->right) {
+        if (targetSum == curr->val)
+            return true;
+        return false; // can remove, but will run more code if remove.
+    }
+    bool left = preTraversalOf112(curr->left, targetSum - curr->val);
+    bool right = preTraversalOf112(curr->right, targetSum - curr->val);
+    return left || right;
+}
+bool hasPathSum(TreeNode* root, int targetSum) {
+    return preTraversalOf112(root, targetSum);
+}
+
+bool hasPathSumStk(TreeNode* root, int targetSum) {
+    if (root == nullptr) return false;
+    stack<TreeNode*> nodeStk;
+    stack<int> numStk;
+    nodeStk.push(root);
+    numStk.push(targetSum);
+
+    while (!nodeStk.empty()) {
+        TreeNode* node = nodeStk.top(); nodeStk.pop();
+        int num = numStk.top(); numStk.pop();
+
+        if (!node->left && !node->right && num == node->val)
+            return true;
+        if (node->right) {
+            nodeStk.push(node->right);
+            numStk.push(num - node->val);
+        }
+        if (node->left) {
+            nodeStk.push(node->left);
+            numStk.push(num - node->val);
+        }
+    }
+    return false;
+}
+
+/**
+  * 113. Path Sum II 
+  */ 
+void preTraversalOf113(TreeNode* curr, int targetSum, vector<int>& path, vector<vector<int>>& ret) {
+    if (!curr) return;
+    path.push_back(curr->val);
+    if (!curr->left && !curr->right) {
+        if (targetSum == curr->val)
+            ret.push_back(path);
+        path.pop_back();
+        return;
+    }
+    preTraversalOf113(curr->left, targetSum - curr->val, path, ret);
+    preTraversalOf113(curr->right, targetSum - curr->val, path, ret);
+    path.pop_back();
+}
+vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+    vector<vector<int>> ret;
+    if (root == nullptr) return ret;
+    vector<int> path;
+    preTraversalOf113(root, targetSum, path, ret);
+    return ret;
 }
