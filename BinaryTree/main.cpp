@@ -90,7 +90,7 @@ void writeTreeVec(const vector<vector<int>>& vvi) {
         strTree += "]\n";
         strTrees += strTree;
     }
-    std::ofstream out("/mnt/c/Users/lenovo/Desktop/strTrees.txt");
+    std::ofstream out("/mnt/f/strTrees.txt");
     out << strTrees;
     out.close();
 }
@@ -113,8 +113,8 @@ void compareWithJava() {
 }
 
 void compareWithJavaStatic() {
-    const vector<vector<int>>& vvi = createTreeVecs();
-    writeTreeVec(vvi);
+    string filePath = "/mnt/f/strTrees.txt";
+    const vector<vector<int>>& vvi = readFileToVec(filePath);
     const vector<TreeNode*>& trees = createTreesByLevel(vvi);
     double totalTime = 0;
     for (int i = 0; i < 10; ++i) {
@@ -131,5 +131,5 @@ void compareWithJavaStatic() {
 
 int main()
 {
-    compareWithJava();
+    compareWithJavaStatic();
 }
