@@ -34,7 +34,7 @@ public class TreeOperation {
     }
 
     public static List<TreeNode> createTreesList() {
-        String filePath = "C:\\Users\\lenovo\\Desktop\\strTrees.txt";
+        String filePath = "F:\\strTrees.txt";
         List<TreeNode> trees = new ArrayList<>();
         TreeNode tree = null;
         List<List<Integer>> lists = ReadFile.readFileToList(filePath);
