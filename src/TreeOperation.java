@@ -33,8 +33,8 @@ public class TreeOperation {
         return root;
     }
 
-    public static List<TreeNode> createTreesList() {
-        String filePath = "F:\\strTrees.txt";
+    public static List<TreeNode> createTreesList(String filePath) {
+//        String filePath = "F:\\strTrees.txt";
         List<TreeNode> trees = new ArrayList<>();
         TreeNode tree = null;
         List<List<Integer>> lists = ReadFile.readFileToList(filePath);
@@ -261,6 +261,103 @@ public class TreeOperation {
             preorderdfs(root.right, targetsum - root.val, res, path);
             path.remove(path.size() - 1); // 回溯
         }
+    }
+
+    /**
+     * 106. Construct Binary Tree from Inorder and Postorder Traversal
+     * @param inorder
+     * @param postorder
+     * @return
+     */
+    public static TreeNode buildTreeInPost(int[] inorder, int[] postorder) {
+        return buildTree1(inorder, 0, inorder.length, postorder, 0, postorder.length);
+    }
+    private static TreeNode buildTree1(int[] inorder, int inLeft, int inRight,
+                               int[] postorder, int postLeft, int postRight) {
+        // 没有元素了
+        if (inRight - inLeft < 1) {
+            return null;
+        }
+        // 只有一个元素了
+        if (inRight - inLeft == 1) {
+            return new TreeNode(inorder[inLeft]);
+        }
+        // 后序数组postorder里最后一个即为根结点
+        int rootVal = postorder[postRight - 1];
+        TreeNode root = new TreeNode(rootVal);
+        int rootIndex = 0;
+        // 根据根结点的值找到该值在中序数组inorder里的位置
+        for (int i = inLeft; i < inRight; i++) {
+            if (inorder[i] == rootVal) {
+                rootIndex = i;
+                break;
+            }
+        }
+        // 根据rootIndex划分左右子树
+        root.left = buildTree1(inorder, inLeft, rootIndex,
+                postorder, postLeft, postLeft + (rootIndex - inLeft));
+        root.right = buildTree1(inorder, rootIndex + 1, inRight,
+                postorder, postLeft + (rootIndex - inLeft), postRight - 1);
+        return root;
+    }
+
+    public static TreeNode buildTreePreIn(int[] preorder, int[] inorder) {
+        return helper(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+    }
+
+    private static TreeNode helper(int[] preorder, int preLeft, int preRight,
+                           int[] inorder, int inLeft, int inRight) {
+        // 递归终止条件
+        if (inLeft > inRight || preLeft > preRight) return null;
+
+        // val 为前序遍历第一个的值，也即是根节点的值
+        // idx 为根据根节点的值来找中序遍历的下标
+        int idx = inLeft, val = preorder[preLeft];
+        TreeNode root = new TreeNode(val);
+        for (int i = inLeft; i <= inRight; i++) {
+            if (inorder[i] == val) {
+                idx = i;
+                break;
+            }
+        }
+
+        // 根据 idx 来递归找左右子树
+        root.left = helper(preorder, preLeft + 1, preLeft + (idx - inLeft),
+                inorder, inLeft, idx - 1);
+        root.right = helper(preorder, preLeft + (idx - inLeft) + 1, preRight,
+                inorder, idx + 1, inRight);
+        return root;
+    }
+
+    /**
+     * 654. Maximum Binary Tree
+     * @param nums
+     * @return
+     */
+    public static TreeNode constructMaximumBinaryTree(int[] nums) {
+        return constructMaximumBinaryTree1(nums, 0, nums.length);
+    }
+
+    private static TreeNode constructMaximumBinaryTree1(int[] nums, int leftIndex, int rightIndex) {
+        if (rightIndex - leftIndex < 1) {// 没有元素了
+            return null;
+        }
+        if (rightIndex - leftIndex == 1) {// 只有一个元素
+            return new TreeNode(nums[leftIndex]);
+        }
+        int maxIndex = leftIndex;// 最大值所在位置
+        int maxVal = nums[maxIndex];// 最大值
+        for (int i = leftIndex + 1; i < rightIndex; i++) {
+            if (nums[i] > maxVal){
+                maxVal = nums[i];
+                maxIndex = i;
+            }
+        }
+        TreeNode root = new TreeNode(maxVal);
+        // 根据maxIndex划分左右子树
+        root.left = constructMaximumBinaryTree1(nums, leftIndex, maxIndex);
+        root.right = constructMaximumBinaryTree1(nums, maxIndex + 1, rightIndex);
+        return root;
     }
 
     public static void main(String[] args) {
