@@ -77,6 +77,30 @@ vector<vector<int>> createTreeVecs() {
     return vvi;
 }
 
+vector<vector<int>> createTreeVecsUnique() {
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist10000(1, 10000);
+
+    vector<vector<int>> vvi;
+    int treeNum = 10000;
+    while (treeNum--) {
+        vector<int> vec;
+        int len = 1000;
+        while (len--) {
+            int val = dist10000(rng);
+            bool flag = true;
+            for (auto i : vec)
+                if (i == val)
+                    flag = false;
+            if (flag)
+                vec.push_back(val);
+        }
+        vvi.push_back(vec);
+    }
+    return vvi;
+}
+
 vector<TreeNode*> createTreesByLevel() {
     auto vvi = createTreeVecs();
     vector<TreeNode*> vt;
@@ -127,6 +151,36 @@ vector<int> preorderTraversalStk(TreeNode* root) {
         if (node->right) stk.push(node->right);
         if (node->left) stk.push(node->left);
     }
+    return ret;
+}
+
+/**
+  * 94. Binary Tree Inorder traversal 
+  */ 
+void inTraversalOf94(TreeNode* curr, vector<int>& ret) {
+    if (curr == nullptr) return;
+    inTraversalOf94(curr->left, ret);
+    ret.push_back(curr->val);
+    inTraversalOf94(curr->right, ret);
+}
+vector<int> inorderTraversal(TreeNode* root) {
+    vector<int> ret;
+    inTraversalOf94(root, ret);
+    return ret;
+}
+
+/**
+  * 145. Binary Tree Postorder Traversal 
+  */ 
+void postTraversalOf145(TreeNode* curr, vector<int>& ret) {
+    if (curr == nullptr) return;
+    postTraversalOf145(curr->left, ret);
+    postTraversalOf145(curr->right, ret);
+    ret.push_back(curr->val);
+}
+vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> ret;
+    postTraversalOf145(root, ret);
     return ret;
 }
 
@@ -514,4 +568,99 @@ vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
     vector<int> path;
     preTraversalOf113(root, targetSum, path, ret);
     return ret;
+}
+
+/**
+  * 106. Construct Binary Tree from Inorder and Postorder traversal
+  */ 
+TreeNode* traversalOf106(const vector<int>& inorder, int iBegin, int iEnd, const vector<int>& postorder, int pBegin, int pEnd) {
+    if (pBegin == pEnd)  return nullptr;
+
+    int nodeVal = postorder[pEnd - 1];
+    TreeNode* root = new TreeNode(nodeVal);
+    if (pEnd - pBegin == 1) return root; // trim
+
+    int delimiterIndex = iBegin;
+    for (; delimiterIndex < iEnd; ++delimiterIndex)
+        if (inorder[delimiterIndex] == nodeVal) break;
+
+    int leftIBegin = iBegin;
+    int leftIEnd = delimiterIndex;
+    int leftPBegin = pBegin;
+    int leftPEnd = pBegin + delimiterIndex - iBegin;
+    root->left = traversalOf106(inorder, leftIBegin, leftIEnd, postorder, leftPBegin, leftPEnd);
+
+    int rightIBegin = delimiterIndex + 1;
+    int rightIEnd = iEnd;
+    int rightPBegin = pBegin + delimiterIndex - iBegin;
+    int rightPEnd = pEnd - 1;
+    root->right = traversalOf106(inorder, rightIBegin, rightIEnd, postorder, rightPBegin, rightPEnd);
+
+    return root;
+}
+TreeNode* buildTreeInPost(const vector<int>& inorder, const vector<int>& postorder) {
+    if (inorder.size() == 0 || postorder.size() == 0) return nullptr;
+    return traversalOf106(inorder, 0, inorder.size(), postorder, 0, postorder.size());
+}
+
+/**
+  * 105. Construct Binary Tree from Preorder and Inorder Tarversal
+  */ 
+TreeNode* traversalOf105(const vector<int>& preorder, int preBegin, int preEnd, const vector<int>& inorder, int inBegin, int inEnd) {
+    if (preBegin == preEnd) return nullptr;
+
+    int nodeVal = preorder[preBegin];
+    TreeNode* node = new TreeNode(nodeVal);
+    if (preEnd - preBegin == 1) return node;
+
+    int delimiterIndex;
+    for (delimiterIndex = inBegin; delimiterIndex < inEnd; ++delimiterIndex)
+        if (inorder[delimiterIndex] == nodeVal)
+            break;
+
+    int leftInBegin = inBegin;
+    int leftInEnd = delimiterIndex;
+    int leftPreBegin = preBegin + 1;
+    int leftPreEnd = preBegin + 1 + delimiterIndex - inBegin;
+    node-> left = traversalOf105(preorder, leftPreBegin, leftPreEnd, inorder, leftInBegin, leftInEnd);
+
+    int rightInBegin = delimiterIndex + 1;
+    int rightInEnd = inEnd;
+    int rightPreBegin = preBegin + 1 + delimiterIndex - inBegin;
+    int rightPreEnd = preEnd;
+    node->right = traversalOf105(preorder, rightPreBegin, rightPreEnd, inorder, rightInBegin, rightInEnd);
+
+    return node;
+}
+TreeNode* buildTreePreIn(const vector<int>& preorder, const vector<int>& inorder) {
+    if (inorder.size() == 0 || preorder.size() == 0) return nullptr;
+    return traversalOf105(preorder, 0, preorder.size(), inorder, 0, inorder.size());
+}
+
+/**
+  * 654. Maximum Binary Tree
+  */ 
+TreeNode* buildOf654(const vector<int>& nums, int begin, int end) {
+    if (begin == end) return nullptr;
+
+    int delimiterIndex = begin;
+    for (int i = begin + 1; i < end; ++i)
+        if (nums[i] > nums[delimiterIndex])
+            delimiterIndex = i;
+
+    TreeNode* node = new TreeNode(nums[delimiterIndex]);
+    if (end - begin == 1) return node;
+
+    int leftBegin = begin;
+    int leftEnd = delimiterIndex;
+    node->left = buildOf654(nums, leftBegin, leftEnd);
+
+    int rightBegin = delimiterIndex + 1;
+    int rightEnd = end;
+    node->right = buildOf654(nums, rightBegin, rightEnd);
+    return node;
+}
+TreeNode* constructMaximumBinaryTree(const vector<int>& nums) {
+    if (nums.size() == 0) return nullptr;
+    return buildOf654(nums, 0, nums.size());
 }

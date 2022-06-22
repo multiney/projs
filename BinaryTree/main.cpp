@@ -78,26 +78,12 @@ void justForTest() {
     }
 }
 
-void writeTreeVec(const vector<vector<int>>& vvi) {
-    string strTrees;
-    for (auto& v : vvi) {
-        string strTree = "[";
-        for (decltype(v.size()) i = 0; i < v.size() - 1; ++i) {
-            strTree += std::to_string(v[i]);
-            strTree += ",";
-        }
-        strTree += std::to_string(v[v.size() - 1]);
-        strTree += "]\n";
-        strTrees += strTree;
-    }
-    std::ofstream out("/mnt/f/strTrees.txt");
-    out << strTrees;
-    out.close();
-}
+
 
 void compareWithJava() {
     const vector<vector<int>>& vvi = createTreeVecs();
-    writeTreeVec(vvi);
+    string filePath = "/mnt/f/strTrees.txt";
+    writeTreeVec(vvi, filePath);
     const vector<TreeNode*>& trees = createTreesByLevel(vvi);
     double totalTime = 0;
     for (int i = 0; i < 10; ++i) {
@@ -113,8 +99,8 @@ void compareWithJava() {
 }
 
 void compareWithJavaStatic() {
-    string filePath = "/mnt/f/strTrees.txt";
-    const vector<vector<int>>& vvi = readFileToVec(filePath);
+    string folderPath = "/mnt/f";
+    const vector<vector<int>>& vvi = readFileToVec(folderPath + "/levelorder.txt");
     const vector<TreeNode*>& trees = createTreesByLevel(vvi);
     double totalTime = 0;
     for (int i = 0; i < 10; ++i) {
@@ -126,10 +112,36 @@ void compareWithJavaStatic() {
     }
     double averageTime = totalTime / 10;
     cout << averageTime
-         << " milliseconds" << endl;
+         << " milliseconds(static version)." << endl;
+}
+
+void cmpJavaOrderStatic() {
+    string folderPath = "/mnt/f";
+    const auto& levelVVI = readFileToVec(folderPath + "/levelorder.txt");
+    const auto& preVVI = readFileToVec(folderPath + "/preorder.txt");
+    const auto& inVVI = readFileToVec(folderPath + "/inorder.txt");
+    const auto& postVVI = readFileToVec(folderPath + "/postorder.txt");
+    
+    double totalTime = 0;
+    for (int i = 0; i < 10; ++i) {
+        auto start = std::chrono::high_resolution_clock::now();
+        // for (decltype(inVVI.size()) j = 0; j < inVVI.size(); ++j)
+        //     buildTreePreIn(preVVI[j], inVVI[j]);
+        for (auto& vi : levelVVI)
+            constructMaximumBinaryTree(vi);
+            
+        auto stop = std::chrono::high_resolution_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+        totalTime += duration.count();
+    }
+    double averageTime = totalTime / 10;
+    cout << averageTime
+         << " milliseconds." << endl;
 }
 
 int main()
 {
-    compareWithJavaStatic();
+    // writeAllOrdersVVI("/mnt/f");
+    // compareWithJavaStatic();
+    cmpJavaOrderStatic();
 }

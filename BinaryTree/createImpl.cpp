@@ -29,3 +29,62 @@ vector<vector<int>> readFileToVec(string filePath) {
     }
     return ret;
 }
+
+
+
+
+
+/**
+  * write trees to the specific file
+  */
+void writeTreeVec(const vector<vector<int>>& vvi, string filePath) {
+    string strTrees;
+    for (auto& v : vvi) {
+        string strTree = "[";
+        for (decltype(v.size()) i = 0; i < v.size() - 1; ++i) {
+            strTree += std::to_string(v[i]);
+            strTree += ",";
+        }
+        strTree += std::to_string(v[v.size() - 1]);
+        strTree += "]\n";
+        strTrees += strTree;
+    }
+    std::ofstream out(filePath);
+    out << strTrees;
+    out.close();
+}
+
+
+// TODO: these three creationg method can be encapasulated?
+vector<vector<int>> createTreeVecsPreorder(const vector<TreeNode *>& trees) {
+    vector<vector<int>> vvi;
+    for (auto& tree : trees)
+        vvi.push_back(preorderTraversal(tree));
+    return vvi;
+}
+
+vector<vector<int>> createTreeVecsInorder(const vector<TreeNode*>& trees) {
+    vector<vector<int>> vvi;
+    for (auto& tree : trees)
+        vvi.push_back(inorderTraversal(tree));
+    return vvi;
+}
+
+vector<vector<int>> createTreeVecspostorder(const vector<TreeNode*>& trees) {
+    vector<vector<int>> vvi;
+    for (auto& tree : trees)
+        vvi.push_back(postorderTraversal(tree));
+    return vvi;
+}
+
+void writeAllOrdersVVI(string folderPath) {
+    const vector<vector<int>>& levelVVI = createTreeVecsUnique(); // it is levelorder just because I can only created tree by level order(my bad)
+    const vector<TreeNode*>& trees = createTreesByLevel(levelVVI);
+    const auto& preVVI = createTreeVecsPreorder(trees);
+    const auto& inVVI = createTreeVecsInorder(trees);
+    const auto& postVVI = createTreeVecspostorder(trees);
+    writeTreeVec(levelVVI, folderPath + "/levelorder.txt");
+    writeTreeVec(preVVI, folderPath + "/preorder.txt");
+    writeTreeVec(inVVI, folderPath + "/inorder.txt");
+    writeTreeVec(postVVI, folderPath + "/postorder.txt");
+}
